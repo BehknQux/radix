@@ -1,0 +1,25 @@
+body {
+  background-color: black !important;
+  color: white !important;
+  overflow-x: hidden;
+}
+/* Scrollbar için genel stil */
+::-webkit-scrollbar {
+  width: 10px; /* Kaydırma çubuğunun genişliği */
+}
+
+/* Scrollbar arka planı */
+::-webkit-scrollbar-track {
+  background: black; 
+}
+
+/* Scrollbar parmağı */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, red, blue); 
+  border-radius: 6px; /* Yuvarlak köşeler */
+}
+
+/* Scrollbar parmağı hover */
+::-webkit-scrollbar-thumb:hover {
+  background: white; 
+}
