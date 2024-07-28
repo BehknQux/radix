@@ -1,23 +1,34 @@
 <template>
   <div>
-    <AIntroduction />
-    <div ref="gpt4component1"></div>
-    <Collage
-      :show="yukseklik > gpt4_1 - windowHeight / 2"
-      :videos="collagedata1"
-    />
-    <div ref="gpt4component2"></div>
-    <Collage
-      :show="yukseklik > gpt4_2 - windowHeight / 2"
-      :videos="collagedata2"
-    />
-    <div ref="gpt4component3"></div>
-    <Collage
-      :show="yukseklik > gpt4_3 - windowHeight / 2"
-      :videos="collagedata3"
-    />
-    <AIntroduction />
+    <Intro />
+    <div id="collageID1">
+      <Collage v-if="collageDistance1 <= currentDistance" :content="content1" />
+    </div>
+    <div id="collageID2">
+      <Collage v-if="collageDistance2 <= currentDistance" :content="content2" />
+    </div>
+    <div id="collageID3">
+      <Collage v-if="collageDistance3 <= currentDistance" :content="content3" />
+    </div>
+    <AIntroduction title="QI" description="Image bot" />
+    <AIntroduction title="QC" description="Chat bot" />
+    <TextAI />
+    <AIntroduction title="QC" description="Image scan" />
+    <TextToImage />
+    <SlidingPhotos />
+    <AIntroduction title="QV" description="Voice bot" />
+    <QV />
+    <RoadMap />
+    <AkiyorDuruyor />
+    <Donut />
+    <Cards />
+    <Footer />
   </div>
+  <!--  <div class="position-fixed top-0">-->
+  <!--    {{ collageDistance }}-->
+  <!--    <br />-->
+  <!--    {{ currentDistance }}-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -51,80 +62,61 @@ export default {
   },
   data() {
     return {
-      gpt4_1: "",
-      gpt4_2: "",
-      gpt4_3: "",
-      yukseklik: 0,
-      windowHeight: window.innerHeight,
-      collagedata1: [
+      collageDistance1: 0,
+      collageDistance2: 0,
+      collageDistance3: 0,
+      currentDistance: 0,
+      content1: [
         {
-          rowHeight: "300px",
-          items: [
-            {
-              content: "High–quality videos from text & images",
-              width: "600px",
-            },
-            {
-              src: "1.png",
-              height: "",
-            },
-          ],
+          src: new URL("./assets/SlidingPhotos/1.png", import.meta.url).href,
+          height: "300",
+        },
+        {
+          src: new URL("./assets/SlidingPhotos/2.png", import.meta.url).href,
+          height: "200",
         },
       ],
-      collagedata2: [
+      content2: [
         {
-          rowHeight: "450px",
-          items: [
-            {
-              src: "2.png",
-              height: "",
-            },
-            {
-              src: "3.png",
-              height: "",
-            },
-          ],
+          src: new URL("./assets/SlidingPhotos/3.png", import.meta.url).href,
+          height: "200",
+        },
+        {
+          src: new URL("./assets/SlidingPhotos/4.png", import.meta.url).href,
+          height: "300",
         },
       ],
-      collagedata3: [
+      content3: [
         {
-          rowHeight: "375px",
-          items: [
-            {
-              src: "4.png",
-              height: "255px",
-            },
-            {
-              src: "5.png",
-              height: "",
-            },
-          ],
+          src: new URL("./assets/SlidingPhotos/5.png", import.meta.url).href,
+          height: "300",
+        },
+        {
+          src: new URL("./assets/SlidingPhotos/6.png", import.meta.url).href,
+          height: "350",
         },
       ],
     };
   },
   methods: {
-    updateScrollPosition() {
-      this.yukseklik = window.scrollY;
-    },
-    updateComponentPositions() {
-      this.gpt4_1 =
-        this.$refs.gpt4component1.getBoundingClientRect().top + window.scrollY;
-      this.gpt4_2 =
-        this.$refs.gpt4component2.getBoundingClientRect().top + window.scrollY;
-      this.gpt4_3 =
-        this.$refs.gpt4component3.getBoundingClientRect().top + window.scrollY;
+    updateScroll() {
+      this.currentDistance = window.scrollY + window.innerHeight / 2;
     },
   },
   mounted() {
-    this.updateComponentPositions();
-    this.updateScrollPosition();
-    window.addEventListener("scroll", this.updateScrollPosition);
-    window.addEventListener("resize", this.updateComponentPositions);
+    window.addEventListener("scroll", this.updateScroll);
+    this.collageDistance1 =
+      document.getElementById("collageID1").getBoundingClientRect().top +
+      window.scrollY;
+    this.collageDistance2 =
+      document.getElementById("collageID2").getBoundingClientRect().top +
+      window.scrollY;
+    this.collageDistance3 =
+      document.getElementById("collageID3").getBoundingClientRect().top +
+      window.scrollY;
   },
   beforeDestroy() {
-    window.removeEventListener("scroll", this.updateScrollPosition);
-    window.removeEventListener("resize", this.updateComponentPositions);
+    window.removeEventListener("scroll", this.updateScroll);
   },
 };
 </script>

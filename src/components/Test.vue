@@ -1,6 +1,6 @@
 <template>
   <div class="test" :class="{ 'fade-in': isVisible }">
-    <div class="d-flex align-items-center mb-3">
+    <div class="d-flex align-items-center">
       <img
         class="image-container me-2"
         src="https://images.ctfassets.net/kftzwdyauwt9/32TaWeYDFTjsFWz6xjwTek/dfc579d0c4961d13ff95e178e87b0734/dall-e1.png?w=1920&q=90&fm=webp"
@@ -64,13 +64,13 @@ export default {
   }
   100% {
     transform: translateY(0);
-    height: 10rem;
     width: 20rem;
+    height: 7rem;
     background-color: rgba(79, 79, 79, 0.45);
     backdrop-filter: blur(200px);
     margin-left: 0.5rem;
     margin-bottom: 0.5rem;
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 1rem;
   }
 }

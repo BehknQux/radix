@@ -1,6 +1,6 @@
 <template>
   <div class="container my-5">
-    <div class="text-center padding">
+    <div class="px-5 text-center padding">
       <h6>About Dall-e 3</h6>
       <h4 class="my-4">
         DALL·E 3 is now available to all ChatGPT Plus, Team and Enterprise
@@ -40,6 +40,7 @@
       <img
         src="https://images.ctfassets.net/kftzwdyauwt9/5JZsznv2kZBJhcntpSLEL9/fbe72de7edaceb8a44176170312ccf2a/picnic-cherry-tree.jpeg?w=1200&q=90&fm=webp"
         alt=""
+        class="w-100"
       />
     </div>
     <div class="text-center padding my-5">
@@ -122,9 +123,6 @@ export default {
 </script>
 
 <style scoped>
-.padding {
-  padding: 0 20rem;
-}
 .prompt-description {
   background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(0.5rem);
